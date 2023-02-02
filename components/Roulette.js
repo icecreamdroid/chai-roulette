@@ -20,7 +20,7 @@ setWinner(randomElement);
         <input type="text" />
         <button type="submit">Add member</button>
       </form>
-      <div>Currently added members are {memberList.map(el=>{return <div>{el}</div>})} </div>
+      <div>Currently added members are {memberList.map(el=>{return <div key={el}>{el}</div>})} </div>
       <button onClick={handleClick}>Select Payer</button>
       {winner && <h1>{winner}</h1>}
     </>
