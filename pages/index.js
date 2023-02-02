@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css'
-import {Roulette} from '../components/Roulette.jsx';
+import {Roulette} from '../components/Roulette.js';
 
 export default function Home() {
   return (
