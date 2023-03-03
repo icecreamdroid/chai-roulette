@@ -1,0 +1,16 @@
+.spinner{
+    height: 250px;
+    width: 250px;
+    margin: 20px auto;
+    border-radius: 50%;
+    background: white;
+    color: black;
+}
+.winner{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+}
+.names{
+    padding-top: 50%;
+}
