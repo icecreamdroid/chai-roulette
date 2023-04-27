@@ -28,6 +28,7 @@ function Spinner(props) {
         return () => clearInterval(timer);
     })
     useEffect(()=>{
+        console.log("useeffect run");
         reduceDelay(5000);
     },[props.on])
 
@@ -54,7 +55,7 @@ function Spinner(props) {
         <>
             <div style={setBackground()} className={styles.spinner}>
             {props.winner && props.on && delay<=0 && <div className={styles.winner}> <Image style={rotateShit()} src={require('../svgone.svg')} width="100" height="100" ></Image> </div>}
-            {props.winner && props.on && delay<=0 && <div style={setColor()} className={styles.winner}> {props.winner}</div>}
+            {props.winner && props.on && delay<=0 && <div className={styles.winner}> {props.winner}</div>}
             {props.on && props.names && delay>0 && <div  className={`${styles.winner} ${styles.names}`}>Not {props.names[Math.floor(Math.random() * props.names.length)]}  </div>}
 
 
