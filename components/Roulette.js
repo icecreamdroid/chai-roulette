@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styles from '../styles/Roulette.module.css';
 import Spinner from './Spinner';
+import Gifs from './Gifs';
 export const Roulette = () => {
   const [memberList, setMember] = useState([]);
   const [winner, setWinner] = useState();
   const [on , setSpinner] = useState(1);
+  const [displayGif,setDisplay] = useState(false);
+
   const addMember = (e) => {
     e.preventDefault();
     setMember(memberList => [...memberList, e.target[0].value])
@@ -22,6 +25,9 @@ export const Roulette = () => {
     var randomColor = Math.floor(Math.random() * 16777215).toString(16);
     return { background: '#' + randomColor }
   }
+  const onReveal = ()=>{
+    setDisplay(true);
+  }
   return (
     <div className={styles.background} style={setBackground()}>
       <h1 className={styles.title}>Welcome to Chai Roulette Boys</h1>
@@ -34,7 +40,8 @@ export const Roulette = () => {
       <div className={styles.center}><button onClick={handleClick}>Select Payer</button></div>
       {/* {winner && <h1 className={styles.title}>Congrats {winner}, pay up now</h1>} */}
 
-      {winner && <Spinner on={on} names={memberList} winner={winner}></Spinner>}
+      {winner && <Spinner onReveal={onReveal} on={on} names={memberList} winner={winner}></Spinner>}
+      {displayGif && <Gifs></Gifs>}
     </div>
   )
 }
