@@ -13,3 +13,7 @@
     height: 100ch;
     width: 100vw;
 }
+.errorMsg{
+    color: red;
+    text-align: center;
+}
