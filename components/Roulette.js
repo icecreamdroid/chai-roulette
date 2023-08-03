@@ -23,6 +23,7 @@ export const Roulette = () => {
   const inputRef = useRef(null)
   const handleClick = (e) => {
     if(memberList.length>1){
+      onReveal();
       const randomElement = memberList[Math.floor(Math.random() * memberList.length)];
       setWinner(randomElement);
       setErrorMsg('')

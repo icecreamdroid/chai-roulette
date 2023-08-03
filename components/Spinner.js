@@ -19,22 +19,22 @@ function Spinner(props) {
                 reduceDelay(delay - 100)
             }
             if (delay < 0) {
-                props.onReveal();
                 setColorKey(colorKey + 100);
                 setRotation(rotation + 10);
             }
-        }, 50);
-
-
+        }, 40);
 
         return () => clearInterval(timer);
     })
+    useEffect(() => {
+        delay < 0 ? props.onReveal() : 0
+    }, [])
     useEffect(() => {
         console.log("useeffect run");
         reduceDelay(5000);
     }, [props.on])
 
- 
+
     const setBackground = () => {
         var randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
