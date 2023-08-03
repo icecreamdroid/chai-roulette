@@ -12,6 +12,8 @@ function Spinner(props) {
     const [colorKey, setColorKey] = useState(1);
     const [delay, reduceDelay] = useState(5000);
     const [rotation, setRotation] = useState(1);
+    const [backRotation, setBackRotation] = useState(1);
+
     useEffect(()=>{
         setCircleKey(circleKey+1)
     },1000)
@@ -22,10 +24,12 @@ function Spinner(props) {
                 setKeyNumber(keyNumber + 1);
                 reduceDelay(delay - 100)
                 setRotation(0)
+                setBackRotation(0)
             }
             if (delay < 0) {
                 setColorKey(colorKey + 100);
                 setRotation(rotation + 10);
+                setBackRotation(backRotation-10)
             }
         }, 40);
 
@@ -45,7 +49,7 @@ function Spinner(props) {
 
         return {
             background: 'radial-gradient(#' + randomColor + ','
-                + '#' + rotation + keyNumber + ')',...rotateShit()
+                + '#' + rotation + keyNumber + ')',...rotateShit(backRotation)
         }
     }
     const setColor = () => {
@@ -55,15 +59,17 @@ function Spinner(props) {
             color: '#' + (randomColorText + colorKey)
         }
     }
-    const rotateShit = () => {
-
-        return { transform: `rotate(${rotation}deg)` }
+    const rotateShit = (rotations,extra=false) => {
+            if(extra){
+                setRotation(rotations+10)
+            }
+        return { transform: `rotate(${rotations}deg)` }
     }
     return (
         <>
             <div style={setBackground()}  key={circleKey} className={styles.spinner}>
-                {props.winner && props.on && delay <= 0 && <div className={styles.winner}> <Image style={rotateShit()} src={require('../svgone.svg')} width="100" height="100" ></Image> </div>}
-                {props.winner && props.on && delay <= 0 && <div className={styles.winner}> {props.winner}</div>}
+                {props.winner && props.on && delay <= 0 && <div className={styles.winner}> <Image style={rotateShit(backRotation)} src={require('../svgone.svg')} width="100" height="100" ></Image> </div>}
+                {props.winner && props.on && delay <= 0 && <div style={rotateShit(rotation)} className={styles.winner}> {props.winner}</div>}
                 {props.on && props.names && delay > 0 && <div className={`${styles.winner} ${styles.names}`}>Not {props.names[Math.floor(Math.random() * props.names.length)]}  </div>}
             </div>
         </>
