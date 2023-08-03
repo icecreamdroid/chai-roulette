@@ -52,7 +52,7 @@ export const Roulette = () => {
         <button type="submit">Add member</button>
       </form>
       {memberList.length > 0 && <div className={[styles.center, styles.memberInfo].join(' ')}>Currently added members are <ol> {memberList.map(el => { return <li key={el}>{el}</li> })} </ol> </div>}
-      <div className={styles.center}><button onClick={handleClick}>Select Payer</button></div>
+      <div className={`${styles.center} ${styles.payer}`}><button onClick={handleClick}>Select Payer</button></div>
       {/* {winner && <h1 className={styles.title}>Congrats {winner}, pay up now</h1>} */}
 
       {winner && <Spinner onReveal={onReveal} on={on} names={memberList} winner={winner}></Spinner>}

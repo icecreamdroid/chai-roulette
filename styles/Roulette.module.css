@@ -6,6 +6,12 @@
     margin-left: auto;
     margin-right: auto;
 }
+.center button{
+    margin-left: 5px;
+}
+.payer{
+    margin-top: 10px;
+}
 .memberInfo{
     font-weight: 600;
 }
