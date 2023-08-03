@@ -2,21 +2,26 @@ import React from 'react'
 import styles from '../styles/Spinner.module.css';
 import { useEffect, useState } from 'react'
 import Image from 'next/image';
-import axios from 'axios';
 function Spinner(props) {
+    
     const state = {
         nextRandomColor: Math.floor(Math.random(0) * 16777215).toString(16).slice(0, 3),
     }
+    const [circleKey,setCircleKey]=useState(1)
     const [keyNumber, setKeyNumber] = useState(1);
     const [colorKey, setColorKey] = useState(1);
     const [delay, reduceDelay] = useState(5000);
     const [rotation, setRotation] = useState(1);
+    useEffect(()=>{
+        setCircleKey(circleKey+1)
+    },1000)
     useEffect(() => {
 
         const timer = setInterval(() => {
             if (delay >= 0) {
                 setKeyNumber(keyNumber + 1);
                 reduceDelay(delay - 100)
+                setRotation(0)
             }
             if (delay < 0) {
                 setColorKey(colorKey + 100);
@@ -40,7 +45,7 @@ function Spinner(props) {
 
         return {
             background: 'radial-gradient(#' + randomColor + ','
-                + '#' + state.nextRandomColor + keyNumber + ')'
+                + '#' + rotation + keyNumber + ')',...rotateShit()
         }
     }
     const setColor = () => {
@@ -56,7 +61,7 @@ function Spinner(props) {
     }
     return (
         <>
-            <div style={setBackground()} className={styles.spinner}>
+            <div style={setBackground()}  key={circleKey} className={styles.spinner}>
                 {props.winner && props.on && delay <= 0 && <div className={styles.winner}> <Image style={rotateShit()} src={require('../svgone.svg')} width="100" height="100" ></Image> </div>}
                 {props.winner && props.on && delay <= 0 && <div className={styles.winner}> {props.winner}</div>}
                 {props.on && props.names && delay > 0 && <div className={`${styles.winner} ${styles.names}`}>Not {props.names[Math.floor(Math.random() * props.names.length)]}  </div>}
