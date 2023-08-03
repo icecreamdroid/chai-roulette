@@ -42,7 +42,7 @@ export const Roulette = () => {
   }
   return (
     <div className={styles.background} style={setBackground()}>
-      <h1 className={styles.title}>Welcome to Chai Roulette Boys</h1>
+      <h1 className={styles.title}>Welcome to Chai Roulette People</h1>
       <h3 className={styles.title}>Please enter member names</h3>
       { errorMsg && <h3 className={styles.errorMsg}>
           {errorMsg}
